@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div#slections,div#selections ul li{
+            position: relative; 
+        }
+    
+    </style>
+</head>
+<body>
+    <input id="country" placeholder = ""/> // it prevents from moving
+    <div id = "selections"></div>
+
+<p>NOTE: Please select a country</p>
+
+
+    <script>
+    
+    function populateInput(name)
+            {
+                document.getElementById("country").value = name;
+                document.getElementById("selections").innerHTML = ""; // it empty the html list. 
+            }
+
+        window.onload  = function()
+        {
+            var countriesXML = null;
+            var countries = null;
+            if(window.XMLHttpRequest)
+            {
+                countriesXML = new XMLHttpRequest();
+            }
+            else {
+                countriesXML = new ActiveXObject("Microsoft.XMLHTTP"); // requires an instantiantion
+            }
+
+            countriesXML.onreadystatechange = function() 
+            {
+                if(countriesXML.readyState === 4)
+                {
+                    // do work 
+                    countries = JSON.parse(countriesXML.responseText);  // it comes as a string
+                }
+            }
+
+            countriesXML.open("GET", "countries.js"); // configure the communication channel. //that how you fetch. 
+            countriesXML.send(null); // to execute command itself.  you can send as a string as well "key= value"
+
+//this was how to send to the server. 
+
+
+
+            var inputCountry = document.getElementById("country");
+            var divSelections = document.getElementById("selections");
+
+            
+            
+
+            inputCountry.onkeyup = function()
+
+                {   divSelections.innerHTML = "<ul>"; // this is to filter
+
+                    // i
+
+                var strRegex = new RegExp(inputCountry.value, 'i'); // it ignores upper case or lower case; 
+                countries.forEach(function(country){
+                    if(strRegex.test(country.name)) 
+                    divSelections.innerHTML += "<li onclick = \"populateInput(\'Bla'\')">" + country.name + "</li>";
+                    
+                }
+                    
+                })
+                {divSelections.innerHTML = "</ul>";
+                
+
+            }
+
+
+        }
+
+
+    </script>
+
+</body>
+</html>

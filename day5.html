@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <button onclick="startTimer()">
+        click Here
+    </button>
+</hr>
+<button onclick="start()">Start</button>
+<button onclick="stop()">Stop</button>
+<h1 id="counter"></h1>
+<hr/>
+// if gp is available will use, otherwise it uses what ever is avaliable is in the machine, such as ip address. 
+<button onclick="getLoc()">Get location</button>
+
+<h1 id="locationBar"></h1> // to 
+
+    <script>
+        var watch = null; // 
+        function getLoc() {
+            
+            watch = navigator.geolocation.watchCurrentPosition(function(loc){
+               // document.getElementById("locationBar").innerHTML = 
+                console.log(loc);
+            },function(error){
+                
+            timeou}, ); // use any device connecting to your device. anything other than your browser. 
+                navigator.geolocation.clearWatch(watch); // to clear
+        }
+
+        var counter = document.getElementById('counter');
+        var timer = null;
+        var number = 0;
+
+
+        function start(){
+            timer = setInterval(function()  
+            {counter.innerHTML =++number; //the timer will increment 
+
+            },0000);
+        }
+
+        function stop (){
+            clearInterval(timer); //how to stop the timer. 
+        }
+
+
+        function startTimer()
+        {
+            setTimeout(function(){
+                alert("After a  5 seconds delay...");
+            }, 50000);
+
+
+        } // it happens only one time; 
+
+    
+    
+    
+    
+    </script>
+
+</body>
+</html>
